@@ -1,0 +1,2 @@
+# smartinstallments
+Pay on click 
