@@ -1,2 +1,2 @@
-# smartinstallments
+# smartinstallment
 Pay on click 
