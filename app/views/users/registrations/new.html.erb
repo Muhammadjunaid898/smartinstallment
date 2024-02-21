@@ -21,6 +21,16 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <div class="field">
+    <%= f.label :user_name %><br />
+    <%= f.text_field :user_name, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sub_domain %><br />
+    <%= f.text_field :sub_domain, autofoucs: true %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
