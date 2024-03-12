@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_17_082653) do
+ActiveRecord::Schema.define(version: 2024_03_09_112903) do
 
   create_table "companies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,10 @@ ActiveRecord::Schema.define(version: 2024_02_17_082653) do
     t.integer "admin_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "phone_number"
+    t.index ["admin_id", "name"], name: "index_companies_on_admin_id_and_name", unique: true
+    t.index ["name"], name: "index_companies_on_name", unique: true
+    t.index ["subdomain"], name: "index_companies_on_subdomain", unique: true
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -29,7 +33,12 @@ ActiveRecord::Schema.define(version: 2024_02_17_082653) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.string "full_name"
+    t.integer "company_id"
+    t.integer "status", default: 1
+    t.integer "created_by_id"
+    t.index ["email", "company_id"], name: "index_users_on_email_and_company_id", unique: true
+    t.index ["full_name", "company_id"], name: "index_users_on_full_name_and_company_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
