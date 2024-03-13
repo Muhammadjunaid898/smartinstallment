@@ -10,16 +10,25 @@
 
   <div class="field">
     <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.label :full_name %>
+    <%= f.text_field :full_name, required: true, maxlength: 25, placeholder: 'Enter Full Name', id: "user-name" %>
   </div>
+
+  <%= f.fields_for :company, resource.build_company do |company_builder| %>
+    <div class="field">
+      <%= company_builder.label :phone_number %>
+      <%= company_builder.telephone_field :phone_number, required: true, placeholder: 'Enter Phone Number', id: "phone", maxlength: 18 %>
+    </div>
+
+    <div class="field">
+      <%= company_builder.label :name %>
+      <%= company_builder.text_field :name, required: true, maxlength: 30, size: 0, placeholder: 'Enter Company Name' %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
