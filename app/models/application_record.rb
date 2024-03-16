@@ -17,7 +17,7 @@ class ApplicationRecord < ActiveRecord::Base
         trace.disable
         if subclass.supports_multitenancy?
           subclass.instance_eval do
-            default_scope { where(company_id: Company.current_company_id) }
+            default_scope { where(company_id: Company.current_tenant_id) }
           end
         end
       end

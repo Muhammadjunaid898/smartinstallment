@@ -7,11 +7,11 @@ class Company < ApplicationRecord
 
   not_multitenant!
 
-  def self.current_company_id=(tenant_id)
+  def self.current_tenant_id=(tenant_id)
     Thread.current[:tenant_id] = tenant_id
   end
 
-  def self.current_company_id
+  def self.current_tenant_id
     Thread.current[:tenant_id]
   end
 
@@ -34,5 +34,4 @@ class Company < ApplicationRecord
   def setup_subdomain
     self.subdomain = self.name.gsub(/[^0-9A-Za-z]/, '')
   end
-
 end
