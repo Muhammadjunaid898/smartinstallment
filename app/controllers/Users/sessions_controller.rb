@@ -24,4 +24,9 @@ class Users::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
+  def login_across_session
+    user  = User.find_by(email: params[:email])
+    sign_in_and_redirect user
+  end
 end

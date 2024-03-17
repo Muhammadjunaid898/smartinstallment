@@ -1,0 +1,11 @@
+<%= form_with(url: user_companies_path, method: :get) do |form| %>
+  <%= form.email_field 'email', required: true, placeholder: "Enter Email ID", id: "email" %>
+  <% if flash.present? %>
+    <div>
+      <% flash.each do |type, error| %>
+        <small><%= error %></small>
+      <%end %>
+    </div>
+  <% end %>
+  <%= form.submit 'Continue' %>
+<% end %>
