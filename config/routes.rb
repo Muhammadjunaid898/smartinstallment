@@ -21,4 +21,5 @@ Rails.application.routes.draw do
       get 'find', on: :collection
     end
   end
+  resources :members
 end
