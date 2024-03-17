@@ -9,6 +9,11 @@ class Company < ApplicationRecord
 
   def self.current_tenant_id=(tenant_id)
     Thread.current[:tenant_id] = tenant_id
+    if tenant_id.present?
+      Thread.current[:tenant] = find_by(id: tenant_id)
+    else
+      Thread.current[:tenant] = nil
+    end
   end
 
   def self.current_tenant_id
