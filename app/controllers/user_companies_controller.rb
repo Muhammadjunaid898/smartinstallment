@@ -2,7 +2,7 @@ class UserCompaniesController < ApplicationController
   skip_before_action :authenticate_user!, raise: false
 
   def find
-  	respond_to do |format|
+    respond_to do |format|
       format.html
     end
   end
@@ -17,7 +17,7 @@ class UserCompaniesController < ApplicationController
       	  redirect_to new_session_url(User, subdomain: @current_company.subdomain)
       	else
       	  flash.now[:alert] = "We could not recognize this email address"
- 		      render :find
+          render :find
       	end
       end
     end
