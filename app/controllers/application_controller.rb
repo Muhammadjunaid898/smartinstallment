@@ -1,16 +1,33 @@
 class ApplicationController < ActionController::Base
+  around_action :set_company
+  around_action :set_current_user
   before_action :authenticate_user!, unless: :devise_controller?
-  before_action :configure_sign_up_params, if: :devise_controller?
   
-  def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :full_name, :password, company_attributes: [:name, :phone_number]])
-  end
-
   def after_sign_in_path_for(resource)
-    view_context.dashboard_path
+    view_context.dashboard_url
   end
 
   def after_sign_out_path_for(resource)
     view_context.root_url
+  end
+
+  private 
+
+  def set_current_user
+    begin
+      User.current_user = current_user
+    rescue => e
+      session.clear
+    end
+    yield
+  ensure
+    User.current_user = nil
+  end
+
+  def set_company
+    Company.current_tenant = Company.find_by(subdomain: request.subdomain)
+    yield
+  ensure
+    Company.current_tenant = nil
   end
 end
