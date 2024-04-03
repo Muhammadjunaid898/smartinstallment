@@ -3,6 +3,9 @@ class MembersController < ApplicationController
   load_and_authorize_resource class: User
 
   def new
+    respond_to do |format|
+      format.html
+    end
   end
 
   def create
@@ -29,7 +32,7 @@ class MembersController < ApplicationController
   end
 
   def index
-  	respond_to do |format|
+    respond_to do |format|
       format.html
     end
   end
