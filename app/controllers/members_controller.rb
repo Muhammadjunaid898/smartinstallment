@@ -2,22 +2,21 @@ class MembersController < ApplicationController
   authorize_resource :company, instance_name: :current_company
   load_and_authorize_resource class: User
 
-  # get/members/new
+  #GET /members/new
   def new
     respond_to do |format|
       format.html
     end
   end
 
-  #POST "/members"
+  #POST /members
   def create
     begin
       @member.company = Company.current_tenant
       @member.new_company_member = true
       success = @member.save! 
-
     rescue StandardError => e
-      flash[:alert] = "#{e.message}"
+      flash[:alert] = e.message
       success = false
     end
 
@@ -30,34 +29,33 @@ class MembersController < ApplicationController
     end
   end
 
-  #GET "/members/id"
+  #GET /members/id
   def show
     respond_to do |format|
       format.html
     end
   end
 
-  #GET "/members"
+  #GET /members
   def index
     respond_to do |format|
       format.html
     end
   end
 
-  #GET "/members/id/edit"
+  #GET /members/id/edit
   def edit
     respond_to do |format|
       format.html
     end
   end
 
-  #PATCH "/members/17"
+  #PATCH /members/id
   def update
     begin
-      success = @member.update!(member_params)
-      
+      success = @member.update!(member_params)   
     rescue StandardError => e
-      flash[:alert] = "#{e.message}"
+      flash[:alert] = e.message
       success = false
     end
     respond_to do |format|
@@ -69,7 +67,7 @@ class MembersController < ApplicationController
     end
   end
 
-  #DELETE "/members/id"
+  #DELETE /members/id
   def destroy
     @member.destroy
     respond_to do |format|
