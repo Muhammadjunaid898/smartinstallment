@@ -10,8 +10,20 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :company
 
-  def required_password?
+  def password_required?
     return false if new_company_member
     super
+  end
+
+  def self.current_user
+    Thread.current[:current_user]
+  end
+
+  def self.current_user=(user)
+    Thread.current[:current_user] = user
+  end
+
+  def self.having_email_without_multitenancy(email)
+    unscoped.find_by(email: email)
   end
 end

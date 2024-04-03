@@ -10,9 +10,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super do |resource|
+      # TO-DO this will do additional query so need to handle creation of user customatically rather than using devise mehtod
+      resource.company.admin_id = resource.id
+      resource.company.save!
+      User.current_user = resource
+    end
+  end
 
   # GET /resource/edit
   # def edit
@@ -38,7 +43,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
@@ -51,9 +56,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_sign_up_path_for(resource)
+    login_across_session_url({ email: resource.email, subdomain: resource.company.subdomain })
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
