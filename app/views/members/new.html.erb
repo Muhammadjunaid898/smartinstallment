@@ -1,10 +1,2 @@
 <h1>Create Members</h1>
-<%= form_for @member, url: members_path do |f| %>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-
-  <%= f.label :full_name %>
-  <%= f.text_field :full_name %>
-
-  <%= f.submit "Create User" %>
-<% end %>
+<%= render partial: 'form', locals: { member: @member, form_url: members_path, form_method: :post, submit_button_label: "Create Member" } %>
