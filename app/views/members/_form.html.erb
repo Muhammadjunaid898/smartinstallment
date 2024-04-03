@@ -1,9 +1,9 @@
-<%= form_for @member, url: form_url, html: { method: form_method } do |f| %>
+<%= form_for local_assigns[:member], url: local_assigns[:form_url], html: { method: local_assigns[:form_method] } do |f| %>
   <%= f.label :email %>
   <%= f.text_field :email %>
 
   <%= f.label :full_name %>
   <%= f.text_field :full_name %>
 
-  <%= f.submit submit_button_label %>
+  <%= f.submit local_assigns[:submit_button_label] %>
 <% end %>
