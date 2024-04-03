@@ -1,59 +1,80 @@
 class MembersController < ApplicationController
-  authorize_resource :company, :instance_name=>:current_company
+  authorize_resource :company, instance_name: :current_company
   load_and_authorize_resource class: User
 
+  # get/members/new
   def new
     respond_to do |format|
       format.html
     end
   end
 
+  #POST "/members"
   def create
     begin
       @member.company = Company.current_tenant
       @member.new_company_member = true
+      success = @member.save! 
 
-      if @member.save!
-        redirect_to member_path(@member), notice: 'Member was successfuly created.'
-      else
-        render :new
-      end
-
-    rescue => e
+    rescue StandardError => e
       flash[:alert] = "#{e.message}"
-      render :new
+      success = false
+    end
+
+    respond_to do |format|
+      if success
+        format.html { redirect_to member_path(@member), notice: 'Member was successfuly created.' }
+      else
+        format.html { render :new }
+      end
     end
   end
 
+  #GET "/members/id"
   def show
     respond_to do |format|
       format.html
     end
   end
 
+  #GET "/members"
   def index
     respond_to do |format|
       format.html
     end
   end
 
+  #GET "/members/id/edit"
   def edit
     respond_to do |format|
       format.html
     end
   end
 
+  #PATCH "/members/17"
   def update
-    if @member.update(member_params)
-      redirect_to member_path(@member), notice: 'Member was successfully updated.'
-    else
-      render :edit
+    begin
+      success = @member.update!(member_params)
+      
+    rescue StandardError => e
+      flash[:alert] = "#{e.message}"
+      success = false
+    end
+    respond_to do |format|
+      if success
+        format.html {  redirect_to member_path(@member), notice: 'Member was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
     end
   end
 
+  #DELETE "/members/id"
   def destroy
     @member.destroy
-    redirect_to members_url, notice: 'Member was successfully destroyed.'
+    respond_to do |format|
+      format.html { redirect_to members_url, notice: 'Member was successfully deleted.' }
+    end
   end
 
   private

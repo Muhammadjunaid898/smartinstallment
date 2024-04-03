@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   def password_required?
     return false if new_company_member
+
     super
   end
 
