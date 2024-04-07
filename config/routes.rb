@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get 'login_across_session', to: 'users/sessions#login_across_session'
     end
     get 'dashboard', to: "companies#dashboard"
+    resources :installment_plans
   end
   constraints(subdomain: '') do
     root to: "home#index", via: :get

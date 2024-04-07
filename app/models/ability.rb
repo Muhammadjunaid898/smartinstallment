@@ -4,10 +4,16 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :manage, :all
+    user ||= User.new # guest user (not logged in)
+
+    can %i[show dashboard], Company, current_company: user.company
+    can %i[index new create show], InstallmentPlan, company_id: user.company_id
+    can %i[edit update destroy], InstallmentPlan do |installment_plan|
+      installment_plan.non_associated_with_any_plot? && installment_plan.company_id == user.company_id
+    end
+
     # Define abilities for the passed in user here. For example:
     #
-    #   user ||= User.new # guest user (not logged in)
     #   if user.admin?
     #     can :manage, :all
     #   else

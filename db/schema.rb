@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_03_09_112903) do
+ActiveRecord::Schema.define(version: 2024_03_25_160722) do
 
   create_table "companies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -23,6 +23,20 @@ ActiveRecord::Schema.define(version: 2024_03_09_112903) do
     t.index ["admin_id", "name"], name: "index_companies_on_admin_id_and_name", unique: true
     t.index ["name"], name: "index_companies_on_name", unique: true
     t.index ["subdomain"], name: "index_companies_on_subdomain", unique: true
+  end
+
+  create_table "installment_plans", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "company_id"
+    t.integer "booking_amount"
+    t.integer "allocation_amount"
+    t.integer "bianual_payment"
+    t.integer "monthly_payment"
+    t.integer "quaterly_payment"
+    t.decimal "duration", precision: 4, scale: 2, default: "1.0"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "sequence_num", null: false
+    t.index ["sequence_num", "company_id"], name: "index_installment_plans_on_sequence_num_and_company_id", unique: true
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

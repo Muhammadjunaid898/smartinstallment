@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Installment Plans</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @installment_plans.each do |installment_plan| %>
+      <tr>
+        <td><%= link_to_if(can?(:show, installment_plan), installment_plan.sequence_num, installment_plan) %></td>
+        <% if can?(:update, installment_plan) %>
+          <td><%= link_to 'Edit', edit_installment_plan_path(installment_plan) %></td>
+        <% end %>
+        <% if can?(:destroy, installment_plan) %>
+          <td><%= link_to 'Destroy', installment_plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Installment Plan', new_installment_plan_path %>

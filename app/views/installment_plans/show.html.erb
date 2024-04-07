@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>Booking Amount: <%= @installment_plan.booking_amount %></p>
+
+<% if @installment_plan.allocation_amount.present? %>
+  <p>Allocation Amount: <%= @installment_plan.allocation_amount %></p>
+<% end %>
+
+<% if @installment_plan.bianual_payment.present? %>
+  <p>Biannual Payment: <%= @installment_plan.bianual_payment %></p>
+<% end %>
+
+<% if @installment_plan.quaterly_payment.present? %>
+  <p>Quaterly Payment: <%= @installment_plan.quaterly_payment %></p>
+<% end %>
+
+<p>Monthly Payment: <%= @installment_plan.monthly_payment %></p>
+<p>Duration in yearst: <%= @installment_plan.duration %></p>
+
+<%= link_to 'Edit', edit_installment_plan_path(@installment_plan) %>
