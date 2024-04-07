@@ -15,7 +15,7 @@ class InstallmentPlan < ApplicationRecord
   validates :monthly_payment, :booking_amount, presence: true,
                                 numericality: { greater_than: 0, less_than_or_equal_to: 10_000_000 }
 
-  def non_associated_with_any_plot?
+  def not_associated_with_any_plot?
     # TODO donot destroy installment plan if it is linked with any plot installment
     true
   end
