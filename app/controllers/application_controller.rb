@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
     view_context.root_url
   end
 
+  def current_company
+    Company.current_tenant
+  end
+
   private 
 
   def set_current_user
