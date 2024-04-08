@@ -1,9 +1,12 @@
-<%= form_for local_assigns[:member], url: local_assigns[:form_url], html: { method: local_assigns[:form_method] } do |f| %>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
+<div class="container">
+  <%= form_for local_assigns[:member], url: local_assigns[:form_url], html: { method: local_assigns[:form_method] } do |f| %>
+    <div class="pb-3">      
+      <%= f.label :email %>
+      <%= f.text_field :email, class: 'form-control' %>
 
-  <%= f.label :full_name %>
-  <%= f.text_field :full_name %>
-
-  <%= f.submit local_assigns[:submit_button_label] %>
-<% end %>
+      <%= f.label :full_name %>
+      <%= f.text_field :full_name, class: 'form-control' %>
+    </div>     
+    <%= f.submit local_assigns[:submit_button_label], class: 'btn btn-primary' %>
+  <% end %>
+</div>

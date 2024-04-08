@@ -1,11 +1,23 @@
-<%= form_with(url: user_companies_path, method: :get) do |form| %>
-  <%= form.email_field 'email', required: true, placeholder: "Enter Email ID", id: "email" %>
-  <% if flash.present? %>
-    <div>
-      <% flash.each do |type, error| %>
-        <small><%= error %></small>
-      <%end %>
+<h1 class="d-flex justify-content-center p-4">Smart Installments</h1>
+<div class="container">
+  <%= form_with(url: user_companies_path, method: :get) do |form| %>
+    <div class="row justify-content-center pb-4">
+      <div class="col-1 p-0 pt-2">
+        <%= form.label 'email', 'Enter Email:', class: 'form-label' %>
+      </div>
+      <div class="col-6">
+        <%= form.email_field 'email', required: true, placeholder: "Enter Email ID", id: "email", class: "form-control" %>
+      </div>
+    </div>
+    <% if flash.present? %>
+      <div>
+        <% flash.each do |type, error| %>
+          <small class="error"><%= error %></small>
+        <%end %>
+      </div>
+    <% end %>
+    <div class="row justify-content-center">
+      <%= form.submit 'Continue', class: 'btn btn-primary col-6' %>
     </div>
   <% end %>
-  <%= form.submit 'Continue' %>
-<% end %>
+</div>
