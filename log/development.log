@@ -10,3 +10,75 @@
   [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.4ms)[0m  [1m[34mSELECT RELEASE_LOCK('2753872932184054275')[0m
   [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Started GET "/dashboard" for ::1 at 2024-04-12 23:42:29 +0500
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by CompaniesController#dashboard as HTML
+  [1m[36mCompany Load (0.7ms)[0m  [1m[34mSELECT `companies`.* FROM `companies` WHERE `companies`.`subdomain` = 'asad01' LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:32:in `set_company'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`company_id` = 7 AND `users`.`id` = 17 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:22:in `set_current_user'
+  [1m[36mCompany Load (0.7ms)[0m  [1m[34mSELECT `companies`.* FROM `companies` WHERE `companies`.`id` = 7 LIMIT 1[0m
+  ↳ app/models/ability.rb:8:in `initialize'
+  Rendering layout layouts/application.html.erb
+  Rendering companies/dashboard.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`company_id` = 7[0m
+  ↳ app/views/companies/dashboard.html.erb:14
+  Rendered companies/dashboard.html.erb within layouts/application (Duration: 4.5ms | Allocations: 2881)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 1263.8ms | Allocations: 24804)
+Completed 200 OK in 1302ms (Views: 1265.3ms | ActiveRecord: 9.3ms | Allocations: 47621)
+
+
+Started GET "/dashboard" for ::1 at 2024-04-12 23:42:31 +0500
+Processing by CompaniesController#dashboard as HTML
+  [1m[36mCompany Load (0.7ms)[0m  [1m[34mSELECT `companies`.* FROM `companies` WHERE `companies`.`subdomain` = 'asad01' LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:32:in `set_company'
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`company_id` = 7 AND `users`.`id` = 17 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:22:in `set_current_user'
+  [1m[36mCompany Load (0.8ms)[0m  [1m[34mSELECT `companies`.* FROM `companies` WHERE `companies`.`id` = 7 LIMIT 1[0m
+  ↳ app/models/ability.rb:8:in `initialize'
+  Rendering layout layouts/application.html.erb
+  Rendering companies/dashboard.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`company_id` = 7[0m
+  ↳ app/views/companies/dashboard.html.erb:14
+  Rendered companies/dashboard.html.erb within layouts/application (Duration: 3.3ms | Allocations: 2027)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 7.3ms | Allocations: 5099)
+Completed 200 OK in 15ms (Views: 6.8ms | ActiveRecord: 3.3ms | Allocations: 8859)
+
+
+Started GET "/dashboard" for ::1 at 2024-04-12 23:56:04 +0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by CompaniesController#dashboard as HTML
+  [1m[36mCompany Load (0.7ms)[0m  [1m[34mSELECT `companies`.* FROM `companies` WHERE `companies`.`subdomain` = 'asad01' LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:32:in `set_company'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`company_id` = 7 AND `users`.`id` = 17 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:22:in `set_current_user'
+  [1m[36mCompany Load (0.8ms)[0m  [1m[34mSELECT `companies`.* FROM `companies` WHERE `companies`.`id` = 7 LIMIT 1[0m
+  ↳ app/models/ability.rb:8:in `initialize'
+  Rendering layout layouts/application.html.erb
+  Rendering companies/dashboard.html.erb within layouts/application
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`company_id` = 7[0m
+  ↳ app/views/companies/dashboard.html.erb:14
+  Rendered companies/dashboard.html.erb within layouts/application (Duration: 3.1ms | Allocations: 2881)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /home/junaid/smartinstallment/public/packs
+[Webpacker] Hash: 8426a825fc80629e38a5
+Version: webpack 4.47.0
+Time: 2301ms
+Built at: 04/12/2024 11:56:08 PM
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-f7a63347b681a4012587.js    830 KiB  application  [emitted] [immutable]  application
+js/application-f7a63347b681a4012587.js.map    950 KiB  application  [emitted] [dev]        application
+                             manifest.json  612 bytes               [emitted]              
+ media/fonts/bootstrap-icons-39795c0b.woff    172 KiB               [emitted]              
+media/fonts/bootstrap-icons-b7bcc075.woff2    127 KiB               [emitted]              
+Entrypoint application = js/application-f7a63347b681a4012587.js js/application-f7a63347b681a4012587.js.map
+[./app/javascript/packs/application.js] 555 bytes {application} [built]
+[./node_modules/webpack/buildin/global.js] (webpack)/buildin/global.js 474 bytes {application} [built]
+    + 11 hidden modules
+
+  Rendered layout layouts/application.html.erb (Duration: 3424.7ms | Allocations: 9934)
+Completed 200 OK in 3458ms (Views: 3425.6ms | ActiveRecord: 8.0ms | Allocations: 32751)
+
+
