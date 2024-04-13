@@ -3,6 +3,7 @@ class CompaniesController < ApplicationController
 
   def dashboard
     @members = User.all
+    @categories = Category.all
   	respond_to do |format|
       format.html
     end
