@@ -33,7 +33,6 @@ class CategoriesController < ApplicationController
 
   # POST /categories
   def create
-    binding.pry
     begin
       @category.company = Company.current_tenant
       success = @category.save! 
