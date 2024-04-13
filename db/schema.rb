@@ -39,8 +39,6 @@ ActiveRecord::Schema.define(version: 2024_04_13_072359) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "user_name"
-    t.string "sub_domain"
     t.string "full_name"
     t.integer "company_id"
     t.integer "status", default: 1
