@@ -26,9 +26,15 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+#For authentication signin/signup
 gem "devise", '=4.7.2'
+
+#For autherization
 gem 'cancancan', '=3.1.0'
 gem 'sequenceid', '=0.0.7', git: "https://github.com/alisyed/sequenceid.git", branch: 'feature/change_activerecord_base_to_applicationrecord_in_sti_parent_class_method'
+
+#Adding Bootstrap for styling
+gem 'bootstrap', '~> 5.0.0'
 
 group :development, :test do
   gem 'pry', '=0.13.1'

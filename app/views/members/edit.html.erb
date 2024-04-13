@@ -1,0 +1,2 @@
+<h1 class="d-flex justify-content-center p-4">Edit Member</h1>
+<%= render partial: 'form', locals: { member: @member, form_url: member_path(@member), form_method: :patch, submit_button_label: "Update Member" } %>

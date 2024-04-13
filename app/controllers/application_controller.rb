@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_company
-    Company.current_tenant 
+    Company.current_tenant
   end
 
   private 

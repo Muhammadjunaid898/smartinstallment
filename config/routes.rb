@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       sessions: 'users/sessions',
       confirmations: 'users/confirmations'
     }
+    resources :members
     devise_scope :user do
       get '/users/sign_out' => 'devise/sessions#destroy'
       get 'login_across_session', to: 'users/sessions#login_across_session'
