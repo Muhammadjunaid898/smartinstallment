@@ -43,6 +43,9 @@ ActiveRecord::Schema.define(version: 2024_04_13_072359) do
     t.integer "company_id"
     t.integer "status", default: 1
     t.integer "created_by_id"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
     t.index ["email", "company_id"], name: "index_users_on_email_and_company_id", unique: true
     t.index ["full_name", "company_id"], name: "index_users_on_full_name_and_company_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
