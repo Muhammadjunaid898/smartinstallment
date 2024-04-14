@@ -26,25 +26,27 @@
     </tbody>
   </table>
   <h4 class="py-4">Manage Categories</h4>
-  <table class="table table-borderless">
-    <thead>
-      <tr>
-        <th>Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @categories.each do |category| %>
+  <%= link_to 'New', new_category_path, class: 'btn btn-secondary me-2' %>
+  <% if @categories.present? %>
+    <table class="table table-borderless">
+      <thead>
         <tr>
-          <td><%= category.name %></td>
-          <td class="d-flex">
-            <%= link_to 'New', new_category_path, class: 'btn btn-secondary me-2' %>
-            <%= link_to 'View', category_path(category), class: 'btn btn-secondary me-2' %>
-            <%= link_to 'Edit', edit_category_path(category), class: 'btn btn-secondary me-2' %>
-            <%= link_to 'Delete', category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-secondary me-2' %>
-          </td>
+          <th>Name</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @categories.each do |category| %>
+          <tr>
+            <td><%= category.name %></td>
+            <td class="d-flex">
+              <%= link_to 'View', category_path(category), class: 'btn btn-secondary me-2' %>
+              <%= link_to 'Edit', edit_category_path(category), class: 'btn btn-secondary me-2' %>
+              <%= link_to 'Delete', category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-secondary me-2' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
   <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'btn btn-primary' %>
 </div>

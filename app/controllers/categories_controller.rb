@@ -1,7 +1,6 @@
 class CategoriesController < ApplicationController
   authorize_resource :company, instance_name: :current_company
   load_and_authorize_resource
-  # before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   # GET /categories
   def index
@@ -79,7 +78,7 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name , :company_id)
+    params.require(:category).permit(:name)
   end
 
 end
