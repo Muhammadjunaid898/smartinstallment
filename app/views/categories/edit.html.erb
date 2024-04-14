@@ -1,0 +1,2 @@
+<h1 class="d-flex justify-content-center p-4">Edit Category</h1>
+<%= render partial: 'form', locals: { category: @category, form_url: category_path(@category), form_method: :patch, submit_button_label: "Update Category" } %>
