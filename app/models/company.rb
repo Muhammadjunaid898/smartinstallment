@@ -6,6 +6,7 @@ class Company < ApplicationRecord
 
   has_many :users
   has_many :installment_plans
+  has_many  :categories
 
   not_multitenant!
 

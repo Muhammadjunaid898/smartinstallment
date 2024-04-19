@@ -1,0 +1,9 @@
+<div class="container">
+  <%= form_for local_assigns[:category], url: local_assigns[:form_url], html: { method: local_assigns[:form_method] } do |f| %>
+    <div class="pb-3">      
+      <%= f.label 'Category Name' %>
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Enter Category Name' %>
+    </div>     
+    <%= f.submit local_assigns[:submit_button_label], class: 'btn btn-primary' %>
+  <% end %>
+</div>
