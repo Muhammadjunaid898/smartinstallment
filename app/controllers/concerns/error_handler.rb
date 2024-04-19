@@ -1,4 +1,3 @@
-
 # module to handle application level exceptions
 module ErrorHandler
   extend ActiveSupport::Concern

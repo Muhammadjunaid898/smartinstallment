@@ -5,8 +5,8 @@ class Company < ApplicationRecord
   before_validation :setup_subdomain, :if=> :new_record?
 
   has_many :users
+  has_many :categories
   has_many :installment_plans
-  has_many  :categories
 
   not_multitenant!
 
