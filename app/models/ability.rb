@@ -8,6 +8,7 @@ class Ability
     can %i[show dashboard], Company, current_company: user.company
     can %i[index new create show edit update destroy], User, company_id: user.company_id
     can %i[index new create show edit update destroy], Category, company_id: user.company_id
+    can %i[index new create show edit update destroy], Product, company_id: user.company_id
     # Define abilities for the passed in user here. For example:
     #
     #   if user.admin?
