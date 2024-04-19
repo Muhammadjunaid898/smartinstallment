@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_03_25_160722) do
+ActiveRecord::Schema.define(version: 2024_04_13_080418) do
+
+  create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.integer "company_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "companies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -29,10 +36,11 @@ ActiveRecord::Schema.define(version: 2024_03_25_160722) do
     t.integer "company_id"
     t.integer "booking_amount"
     t.integer "allocation_amount"
-    t.integer "bianual_payment"
+    t.integer "biannual_payment"
     t.integer "monthly_payment"
-    t.integer "quaterly_payment"
-    t.decimal "duration", precision: 4, scale: 2, default: "1.0"
+    t.integer "quarterly_payment"
+    t.integer "no_of_monthly_payments"
+    t.integer "no_of_biannual_or_quarterly_payments"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "sequence_num", null: false
@@ -51,6 +59,9 @@ ActiveRecord::Schema.define(version: 2024_03_25_160722) do
     t.integer "company_id"
     t.integer "status", default: 1
     t.integer "created_by_id"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
     t.index ["email", "company_id"], name: "index_users_on_email_and_company_id", unique: true
     t.index ["full_name", "company_id"], name: "index_users_on_full_name_and_company_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

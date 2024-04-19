@@ -4,11 +4,12 @@ class InstallmentPlan < ApplicationRecord
   belongs_to :company
   sequenceid :company, :installment_plans
   before_destroy :check_for_inclusion_in_plots
+  validate :must_have_payment_amount
 
-  validates :duration, presence: true,
-                     numericality: { greater_than: 0.25, less_than_or_equal_to: 10 }
+  validates :no_of_biannual_or_quarterly_payments, :no_of_monthly_payments, presence: true,
+                     numericality: { greater_than: 0, less_than_or_equal_to: 100_000_000 }
 
-  validates :bianual_payment, :quaterly_payment, :allocation_amount,
+  validates :biannual_payment, :quarterly_payment, :allocation_amount,
             numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100_000_000 },
             allow_blank: true
 
@@ -20,7 +21,22 @@ class InstallmentPlan < ApplicationRecord
     true
   end
 
+  def total_price
+    price = booking_amount
+    price += allocation_amount if allocation_amount.present?
+    price += (monthly_payment * no_of_monthly_payments)
+    price += (biannual_payment * no_of_biannual_or_quarterly_payments) if biannual_payment.present?
+    price += (quarterly_payment * no_of_biannual_or_quarterly_payments) if quarterly_payment.present?
+    price
+  end
+
   private
+
+  def must_have_payment_amount
+    unless biannual_payment.present? || quarterly_payment.present?
+      errors.add(:base, "Please enter either biannual or quarterly payment amount")
+    end
+  end
 
   def check_for_inclusion_in_plots
     # TODO donot destroy installment plan if it is linked with any plot installment

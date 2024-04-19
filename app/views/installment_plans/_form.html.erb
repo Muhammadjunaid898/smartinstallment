@@ -21,13 +21,13 @@
   <br />
   <br />
 
-  <%= form.label :bianual_payment, "Biannual Payment" %>
-  <%= form.number_field :bianual_payment, min: 0, step: 'any' %>
+  <%= form.label :biannual_payment, "Biannual Payment" %>
+  <%= form.number_field :biannual_payment, min: 0, step: 'any' %>
   <br />
   <br />
 
-  <%= form.label :quaterly_payment, "Quaterly Payment" %>
-  <%= form.number_field :quaterly_payment, min: 0, step: 'any' %>
+  <%= form.label :quarterly_payment, "Quaterly Payment" %>
+  <%= form.number_field :quarterly_payment, min: 0, step: 'any' %>
   <br />
   <br />
 
@@ -36,8 +36,11 @@
   <br />
   <br />
 
-  <%= form.label :duration, "Duration in years" %>
-  <%= form.number_field :duration, min: 0.25, max: 10, step: 0.25 %>
+  <%= form.label :no_of_monthly_payments, "No of monthly payments" %>
+  <%= form.number_field :no_of_monthly_payments, min: 0, step: 'any' %>
+
+  <%= form.label :no_of_biannual_or_quarterly_payments, "No of Quaterly/Biannual payments" %>
+  <%= form.number_field :no_of_biannual_or_quarterly_payments, min: 0, step: 'any' %>
   <br />
   <br />
 

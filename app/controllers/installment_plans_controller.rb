@@ -74,10 +74,11 @@ class InstallmentPlansController < ApplicationController
     params.require(:installment_plan).permit(
       :booking_amount,
       :allocation_amount,
-      :bianual_payment,
+      :biannual_payment,
       :monthly_payment,
-      :quaterly_payment,
-      :duration
+      :quarterly_payment,
+      :no_of_monthly_payments,
+      :no_of_biannual_or_quarterly_payments
     )
   end
 end
