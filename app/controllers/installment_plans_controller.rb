@@ -72,6 +72,7 @@ class InstallmentPlansController < ApplicationController
 
   def installment_plan_params
     params.require(:installment_plan).permit(
+      :category_id,
       :booking_amount,
       :allocation_amount,
       :biannual_payment,

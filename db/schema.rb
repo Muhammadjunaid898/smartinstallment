@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2024_04_13_080418) do
     t.integer "quarterly_payment"
     t.integer "no_of_monthly_payments"
     t.integer "no_of_biannual_or_quarterly_payments"
+    t.integer "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "sequence_num", null: false

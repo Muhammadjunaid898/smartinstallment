@@ -12,12 +12,12 @@
   <tbody>
     <% @installment_plans.each do |installment_plan| %>
       <tr>
-        <td><%= link_to_if(can?(:show, installment_plan), installment_plan.sequence_num, installment_plan) %></td>
+        <td><%= link_to_if(can?(:show, installment_plan), installment_plan.sequence_num, installment_plan, class: 'btn btn-secondary me-2') %></td>
         <% if can?(:update, installment_plan) %>
-          <td><%= link_to 'Edit', edit_installment_plan_path(installment_plan) %></td>
+          <td><%= link_to 'Edit', edit_installment_plan_path(installment_plan), class: 'btn btn-secondary me-2' %></td>
         <% end %>
         <% if can?(:destroy, installment_plan) %>
-          <td><%= link_to 'Destroy', installment_plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Destroy', installment_plan, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-secondary me-2' %></td>
         <% end %>
       </tr>
     <% end %>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Installment Plan', new_installment_plan_path %>
+<%= link_to 'New Installment Plan', new_installment_plan_path, class: 'btn btn-primary' %>
