@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     }
     resources :members
     resources :categories
+    resources :products
     devise_scope :user do
       get '/users/sign_out' => 'devise/sessions#destroy'
       get 'login_across_session', to: 'users/sessions#login_across_session'

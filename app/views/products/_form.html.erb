@@ -1,0 +1,21 @@
+<div class="container">
+  <%= form_for local_assigns[:product], url: local_assigns[:form_url], html: { method: local_assigns[:form_method] } do |f| %>
+    <div class="pb-3">      
+      <%= f.label 'Product Name' %>
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Enter Product Name' %>
+    </div>
+    <div class="pb-3">      
+      <%= f.label 'Price' %>
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Enter Price' %>
+    </div> 
+    <div class="pb-3">      
+      <%= f.label 'Identification Number' %>
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Enter Identification Number' %>
+    </div> 
+    <div class="pb-3">      
+      <%= f.label 'Description' %>
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Enter Product Description' %>
+    </div>     
+    <%= f.submit local_assigns[:submit_button_label], class: 'btn btn-primary' %>
+  <% end %>
+</div>

@@ -1,0 +1,2 @@
+<h1 class="d-flex justify-content-center p-4">Edit Product</h1>
+<%= render partial: 'form', locals: { product: @product, form_url: product_path(@product), form_method: :patch, submit_button_label: "Update Product" } %>
