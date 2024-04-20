@@ -1,0 +1,61 @@
+<%= form_with(model: installment_plan) do |form| %>
+  <% if installment_plan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(installment_plan.errors.count, "error") %> prohibited this installment_plan from being saved:</h2>
+
+      <ul>
+        <% installment_plan.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.label 'Category' %>
+  <%= form.select :category_id, categories_options(Company.current_tenant.categories, installment_plan.category&.id), class: 'form-control' %>
+  <br/>
+
+  <%= form.label :booking_amount, "Booking Amount" %>
+  <%= form.number_field :booking_amount, min: 0, step: 'any', class: 'form-control w-50 mb-3' %>
+ 
+  <%= form.label :allocation_amount, "Allocation Amount" %>
+  <%= form.number_field :allocation_amount, min: 0, step: 'any', class: 'form-control w-50 mb-3' %>
+
+  <%= form.label :payment_frequency %>
+  <%= form.select :payment_frequency, [['Biannual', 'biannual'], ['Quarterly', 'quarterly']] %>
+
+  <div id="biannual_fields" style="display: block;">
+    <%= form.label :biannual_payment, "Biannual Payment" %>
+  <%= form.number_field :biannual_payment, min: 0, step: 'any', class: 'form-control w-50 mb-3' %>
+  </div>
+
+  <div id="quarterly_fields" style="display: none;">
+    <%= form.label :quarterly_payment, "Quaterly Payment" %>
+    <%= form.number_field :quarterly_payment, min: 0, step: 'any', class: 'form-control w-50 mb-3' %>
+  </div>
+
+  <%= form.label :monthly_payment, "Monthly Payment" %>
+  <%= form.number_field :monthly_payment, min: 0, step: 'any', class: 'form-control w-50 mb-3' %>
+
+  <%= form.label :no_of_monthly_payments, "No of monthly payments" %>
+  <%= form.number_field :no_of_monthly_payments, min: 0, step: 'any', class: 'form-control w-50 mb-3' %>
+
+  <%= form.label :no_of_biannual_or_quarterly_payments, "No of Quaterly/Biannual payments" %>
+  <%= form.number_field :no_of_biannual_or_quarterly_payments, min: 0, step: 'any', class: 'form-control w-50' %>
+
+  <%= form.submit 'Create installment plan', class: 'btn btn-primary mt-3' %>
+<% end %>
+
+<script>
+  $(document).ready(function() {
+    $('#installment_plan_payment_frequency').change(function() {
+      if ($(this).val() === 'biannual') {
+        $('#biannual_fields').show();
+        $('#quarterly_fields').hide();
+      } else if ($(this).val() === 'quarterly') {
+        $('#biannual_fields').hide();
+        $('#quarterly_fields').show();
+      }
+    });
+  });
+</script>

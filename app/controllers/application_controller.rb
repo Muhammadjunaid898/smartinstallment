@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include ErrorHandler
+
   around_action :set_company
   around_action :set_current_user
   before_action :authenticate_user!, unless: :devise_controller?
@@ -20,12 +22,14 @@ class ApplicationController < ActionController::Base
   def set_current_user
     begin
       User.current_user = current_user
+      User.current_ability = current_ability if current_user.present?
     rescue => e
       session.clear
     end
     yield
   ensure
     User.current_user = nil
+    User.current_ability = nil
   end
 
   def set_company

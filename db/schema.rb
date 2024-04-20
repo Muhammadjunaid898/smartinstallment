@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_04_13_072359) do
+ActiveRecord::Schema.define(version: 2024_04_13_080418) do
 
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -29,6 +29,22 @@ ActiveRecord::Schema.define(version: 2024_04_13_072359) do
     t.index ["admin_id", "name"], name: "index_companies_on_admin_id_and_name", unique: true
     t.index ["name"], name: "index_companies_on_name", unique: true
     t.index ["subdomain"], name: "index_companies_on_subdomain", unique: true
+  end
+
+  create_table "installment_plans", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "company_id"
+    t.integer "booking_amount"
+    t.integer "allocation_amount"
+    t.integer "biannual_payment"
+    t.integer "monthly_payment"
+    t.integer "quarterly_payment"
+    t.integer "no_of_monthly_payments"
+    t.integer "no_of_biannual_or_quarterly_payments"
+    t.integer "category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "sequence_num", null: false
+    t.index ["sequence_num", "company_id"], name: "index_installment_plans_on_sequence_num_and_company_id", unique: true
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

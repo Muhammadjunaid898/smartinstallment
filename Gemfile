@@ -31,6 +31,7 @@ gem "devise", '=4.7.2'
 
 #For autherization
 gem 'cancancan', '=3.1.0'
+gem 'sequenceid', '=0.0.7', git: "https://github.com/alisyed/sequenceid.git", branch: 'feature/change_activerecord_base_to_applicationrecord_in_sti_parent_class_method'
 
 #Adding Bootstrap for styling
 gem 'bootstrap', '~> 5.0.0'
