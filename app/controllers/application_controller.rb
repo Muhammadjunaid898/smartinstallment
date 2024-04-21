@@ -19,13 +19,15 @@ class ApplicationController < ActionController::Base
 
   private 
 
+  def assign_thread_current_user_and_role
+    User.current_user = current_user
+    User.current_ability = current_ability if current_user.present?
+  rescue StandardError
+    session.clear
+  end
+
   def set_current_user
-    begin
-      User.current_user = current_user
-      User.current_ability = current_ability if current_user.present?
-    rescue => e
-      session.clear
-    end
+    assign_thread_current_user_and_role
     yield
   ensure
     User.current_user = nil
@@ -33,7 +35,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_company
-    Company.current_tenant = Company.find_by(subdomain: request.subdomain)
+    if request.subdomain.present? && request.domain == APP_HOST
+      Company.current_tenant = Company.find_by(subdomain: request.subdomain)
+    else
+      Company.current_tenant = nil
+    end
     yield
   ensure
     Company.current_tenant = nil

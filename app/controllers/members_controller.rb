@@ -13,6 +13,7 @@ class MembersController < ApplicationController
   def create
     begin
       @member.company = Company.current_tenant
+      @member.created_by_id = @current_user.id
       @member.new_company_member = true
       success = @member.save! 
     rescue StandardError => e

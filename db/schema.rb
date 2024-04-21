@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_04_13_080418) do
+ActiveRecord::Schema.define(version: 2024_04_21_063733) do
 
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -45,6 +45,14 @@ ActiveRecord::Schema.define(version: 2024_04_13_080418) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "sequence_num", null: false
     t.index ["sequence_num", "company_id"], name: "index_installment_plans_on_sequence_num_and_company_id", unique: true
+  end
+
+  create_table "invalid_routes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "url"
+    t.string "relative_path"
+    t.string "request_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
