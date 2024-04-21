@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     end
     get 'dashboard', to: "companies#dashboard"
     resources :installment_plans
+    root to: "companies#dashboard",as: 'root_dashboard', :via => :get
   end
   constraints(subdomain: '') do
     root to: "home#index", via: :get
@@ -24,4 +25,6 @@ Rails.application.routes.draw do
       get 'find', on: :collection
     end
   end
+
+  match "*path", to: "catch_all#index", via: :all
 end
