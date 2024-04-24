@@ -34,7 +34,7 @@ class ProductsController < ApplicationController
   def create
     begin
       @product.company = Company.current_tenant
-      success = product.save! 
+      success = @product.save! 
     rescue StandardError => e
       flash[:alert] = e.message
       success = false
@@ -78,6 +78,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:buyer_id, :name, :sale_date, :price, :description, :identification_number)
+    params.require(:product).permit(:buyer_id, :name, :sale_date, :description, :identification_number)
   end
 end

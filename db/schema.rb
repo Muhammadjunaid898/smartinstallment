@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_04_13_072359) do
+ActiveRecord::Schema.define(version: 2024_04_23_042803) do
 
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -31,15 +31,19 @@ ActiveRecord::Schema.define(version: 2024_04_13_072359) do
     t.index ["subdomain"], name: "index_companies_on_subdomain", unique: true
   end
 
-  create_table "products", primary_key: "identification_number", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "buyer_id"
     t.string "name"
     t.date "sale_date"
-    t.decimal "price", precision: 10
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "company_id"
+    t.date "installments_start_date"
+    t.integer "identification_number"
     t.index ["buyer_id"], name: "index_products_on_buyer_id"
+    t.index ["company_id"], name: "index_products_on_company_id"
+    t.index ["identification_number"], name: "index_products_on_identification_number", unique: true
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -50,8 +54,6 @@ ActiveRecord::Schema.define(version: 2024_04_13_072359) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "user_name"
-    t.string "sub_domain"
     t.string "full_name"
     t.integer "company_id"
     t.integer "status", default: 1

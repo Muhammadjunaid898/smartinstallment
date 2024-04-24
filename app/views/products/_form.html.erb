@@ -3,18 +3,14 @@
     <div class="pb-3">      
       <%= f.label 'Product Name' %>
       <%= f.text_field :name, class: 'form-control', placeholder: 'Enter Product Name' %>
-    </div>
-    <div class="pb-3">      
-      <%= f.label 'Price' %>
-      <%= f.text_field :name, class: 'form-control', placeholder: 'Enter Price' %>
     </div> 
     <div class="pb-3">      
       <%= f.label 'Identification Number' %>
-      <%= f.text_field :name, class: 'form-control', placeholder: 'Enter Identification Number' %>
+      <%= f.text_field :identification_number, class: 'form-control', placeholder: 'Enter Identification Number' %>
     </div> 
     <div class="pb-3">      
       <%= f.label 'Description' %>
-      <%= f.text_field :name, class: 'form-control', placeholder: 'Enter Product Description' %>
+      <%= f.text_field :description, class: 'form-control', placeholder: 'Enter Product Description' %>
     </div>     
     <%= f.submit local_assigns[:submit_button_label], class: 'btn btn-primary' %>
   <% end %>
